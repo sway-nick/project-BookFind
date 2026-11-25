@@ -4,7 +4,13 @@
 
 .feedbacks h2 {
   margin: 0 0 16px;
-  font-size: 36px;
+  font-size: 32px;
+}
+
+@media screen and (min-width: 768px) {
+  .feedbacks h2 {
+    font-size: 36px;
+  }
 }
 
 .feedbacks .container > p {

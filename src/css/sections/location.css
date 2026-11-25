@@ -22,7 +22,7 @@
 }
 
 .location-title {
-  font-size: 48px;
+  font-size: 40px;
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.01em;
@@ -88,6 +88,10 @@
 }
 
 @media (min-width: 768px) {
+  .location-title {
+    font-size: 48px;
+  }
+
   .location-wrap {
     flex-direction: row;
     margin-bottom: 80px;
