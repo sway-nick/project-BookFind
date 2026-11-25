@@ -5,6 +5,7 @@ const initMobileMenu = () => {
   const openMenuBtn = document.querySelector('[data-menu-open]');
   const closeMenuBtn = document.querySelector('[data-menu-close]');
   const mobileMenu = document.querySelector('[data-menu]');
+  const mobileMenuContainer = mobileMenu ? mobileMenu.querySelector('.mobile-menu-container') : null;
   const menuLinks = document.querySelectorAll('.mobile-menu-link');
 
   if (!openMenuBtn || !closeMenuBtn || !mobileMenu) return;
@@ -44,9 +45,9 @@ const initMobileMenu = () => {
     link.addEventListener('click', closeMenu);
   });
 
-  // Закриття меню при кліку по бекдропу (поза контентом)
+  // Закриття меню при кліку по бекдропу (поза контентом меню)
   mobileMenu.addEventListener('click', event => {
-    if (event.target === mobileMenu) {
+    if (event.target === mobileMenu || (mobileMenuContainer && !mobileMenuContainer.contains(event.target))) {
       closeMenu();
     }
   });
