@@ -140,10 +140,12 @@
 
 .books-item-img {
   width: 100%;
-  height: 488px;
+  height: auto;
+  aspect-ratio: 343 / 488;
   margin-bottom: 16px;
   object-fit: cover;
   border-radius: 8px;
+  background-color: var(--color-input-bg);
 }
 
 .books-item-info {
@@ -246,7 +248,8 @@
   }
 
   .books-item-img {
-    height: 484px;
+    height: auto;
+    aspect-ratio: 340 / 484;
   }
 }
 
@@ -323,6 +326,7 @@
   }
 
   .books-item-img {
-    height: 323px;
+    height: auto;
+    aspect-ratio: 227 / 323;
   }
 }
