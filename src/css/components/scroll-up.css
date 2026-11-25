@@ -1,59 +1,182 @@
+/* =========================================
+   SCROLL TO TOP (LIQUID GLASS)
+========================================= */
+
 .scroll-up-btn {
-    position: fixed;
-    z-index: 100;
-    right: 16px;
-    bottom: 16px;
+  position: fixed;
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  right: calc(16px + env(safe-area-inset-right, 0px));
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background: radial-gradient(
+    120% 120% at 30% 25%,
+    rgba(255, 255, 255, 0.28) 0%,
+    rgba(255, 255, 255, 0.08) 70%
+  );
+  backdrop-filter: blur(8px) saturate(160%);
+  -webkit-backdrop-filter: blur(8px) saturate(160%);
+  backdrop-filter: url(#liquidGlassFilter) saturate(125%) brightness(1.04);
+  -webkit-backdrop-filter: url(#liquidGlassFilter) saturate(125%) brightness(1.04);
+  border: 1px solid rgba(255, 255, 255, 0.45);
 
-    width: 44px;
-    height: 44px;
+  box-shadow:
+    inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 2px 0 rgba(0, 0, 0, 0.15),
+    0 8px 24px 0 rgba(11, 5, 0, 0.22),
+    0 0 12px 0 rgba(225, 93, 5, 0.18);
 
-    border: 2px solid var(--color-text);
-    border-radius: 50%;
-    background-color: transparent;
-    color: var(--color-text);
+  color: var(--color-text);
+  cursor: pointer;
+  z-index: 100;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
 
-    cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(16px) scale(0.92);
 
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-
-    transition: var(--transition);
+  transition:
+    opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    color 0.2s ease,
+    background 0.25s ease;
 }
 
-.scroll-up-btn.is-visible {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
+/* Subtle, soft diffused sheen on convex glass dome */
+.scroll-up-btn::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 20%,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0) 55%
+  );
+  pointer-events: none;
+  opacity: 0.7;
+  transition: opacity 0.25s ease;
 }
 
-.scroll-up-btn:hover {
-    background-color: var(--color-accent);
-    transform: translateY(-3px);
+/* Bottom gentle warm accent glow */
+.scroll-up-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 20%;
+  right: 20%;
+  height: 25%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at bottom,
+    rgba(225, 93, 5, 0.28) 0%,
+    rgba(225, 93, 5, 0) 70%
+  );
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 0.25s ease;
+}
+
+/* Visible state when scrolled past threshold */
+.scroll-up-btn.is-visible,
+.scroll-up-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+/* Hover & Focus Visible */
+.scroll-up-btn:hover,
+.scroll-up-btn:focus-visible {
+  transform: translateY(0) scale(1.08);
+  border-color: rgba(255, 255, 255, 0.7);
+  color: var(--color-accent);
+  box-shadow:
+    inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 2px 0 rgba(0, 0, 0, 0.2),
+    0 10px 30px 0 rgba(11, 5, 0, 0.3),
+    0 0 20px 0 rgba(225, 93, 5, 0.35);
+}
+
+.scroll-up-btn:hover::before {
+  opacity: 0.95;
+}
+
+.scroll-up-btn:hover::after {
+  opacity: 0.9;
 }
 
 .scroll-up-btn:focus-visible {
-    outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
 }
 
+/* Active click state */
+.scroll-up-btn:active {
+  transform: translateY(0) scale(0.95);
+  box-shadow:
+    inset 0 1px 2px 0 rgba(0, 0, 0, 0.35),
+    0 4px 14px 0 rgba(11, 5, 0, 0.2),
+    0 0 10px 0 rgba(225, 93, 5, 0.2);
+}
+
+.scroll-top-icon {
+  display: block;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.2s ease;
+}
+
+.scroll-up-btn:hover .scroll-top-icon {
+  transform: translateY(-2px);
+}
+
+.scroll-up-btn:active .scroll-top-icon {
+  transform: translateY(1px);
+}
+
+/* Desktop sizing & spacing */
 @media screen and (min-width: 768px) {
-    .scroll-up-btn {
-        right: 24px;
-        bottom: 24px;
-        width: 48px;
-        height: 48px;
-    }
+  .scroll-up-btn {
+    width: 52px;
+    height: 52px;
+    right: 28px;
+    bottom: 28px;
+  }
 }
 
 @media screen and (min-width: 1440px) {
-    .scroll-up-btn {
-        right: 32px;
-        bottom: 32px;
-        width: 52px;
-        height: 52px;
-    }
+  .scroll-up-btn {
+    width: 56px;
+    height: 56px;
+    right: 36px;
+    bottom: 36px;
+  }
+}
+
+/* Accessibility: Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-up-btn,
+  .scroll-top-icon,
+  .scroll-up-btn::before,
+  .scroll-up-btn::after {
+    transition: none !important;
+    animation: none !important;
+  }
+  .scroll-up-btn:hover,
+  .scroll-up-btn:active,
+  .scroll-up-btn:focus-visible {
+    transform: none !important;
+  }
 }
