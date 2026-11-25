@@ -39,6 +39,7 @@ function bookCardContent({ title, author, price, book_image, _id }) {
       width="343"
       height="488"
       loading="lazy"
+      decoding="async"
       ${_id ? `data-id="${_id}"` : ''}
     />
     <div class="books-item-info">
