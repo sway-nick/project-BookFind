@@ -29,7 +29,7 @@
     0 8px 24px 0 rgba(11, 5, 0, 0.35),
     0 0 12px 0 rgba(225, 93, 5, 0.18);
 
-  color: var(--color-text);
+  color: var(--white);
   cursor: pointer;
   z-index: 100;
   touch-action: manipulation;
@@ -99,8 +99,8 @@
 .scroll-up-btn:hover,
 .scroll-up-btn:focus-visible {
   transform: translateY(0) scale(1.08);
-  border-color: rgba(255, 255, 255, 0.45);
-  color: var(--color-accent);
+  border-color: rgba(255, 255, 255, 0.6);
+  color: var(--white);
   box-shadow:
     inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.55),
     inset 0 -1px 2px 0 rgba(0, 0, 0, 0.3),
@@ -132,7 +132,7 @@
 
 .scroll-top-icon {
   display: block;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.75));
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.2s ease;
 }
 
