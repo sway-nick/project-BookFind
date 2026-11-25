@@ -3,11 +3,27 @@
   align-items: flex-start;
   justify-content: center;
   padding: 32px 16px;
+  perspective: 1400px;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
 }
 
 .book-modal-window {
   max-width: 343px;
   padding: 64px 16px;
+  transform: perspective(1400px) rotateY(0deg) scale(1);
+  transform-origin: center center;
+  transition:
+    transform 480ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 480ms cubic-bezier(0.16, 1, 0.3, 1);
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+.book-modal-backdrop.is-hidden .book-modal-window {
+  transform: perspective(1400px) rotateY(-70deg) scale(0.65);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .book-modal-close {

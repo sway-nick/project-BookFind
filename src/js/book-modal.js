@@ -86,7 +86,7 @@ function handleBookModalEscape(event) {
   }
 }
 
-async function openBookModal(bookId) {
+async function openBookModal(bookId, triggerImg = null) {
   if (!bookId) return;
 
   try {
@@ -104,6 +104,12 @@ async function openBookModal(bookId) {
       message: 'Failed to load book details. Please try again later.',
       position: 'topRight',
     });
+  } finally {
+    if (triggerImg) {
+      setTimeout(() => {
+        triggerImg.classList.remove('is-opening');
+      }, 350);
+    }
   }
 }
 
@@ -113,6 +119,9 @@ function closeBookModal() {
   refs.backdrop.classList.add('is-hidden');
   document.body.style.overflow = '';
   window.removeEventListener('keydown', handleBookModalEscape);
+  document.querySelectorAll('.books-item-img.is-opening').forEach(img => {
+    img.classList.remove('is-opening');
+  });
 }
 
 refs.closeBtn.addEventListener('click', closeBookModal);
@@ -164,7 +173,11 @@ refs.booksList.addEventListener('click', event => {
     card?.querySelector('.books-item-btn[data-id]')?.dataset.id;
 
   if (bookId) {
-    openBookModal(bookId);
+    const cardImg = card?.querySelector('.books-item-img');
+    if (cardImg) {
+      cardImg.classList.add('is-opening');
+    }
+    openBookModal(bookId, cardImg);
   }
 });
 
