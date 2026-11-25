@@ -9,7 +9,7 @@ if (heroSliderEl) {
     modules: [Autoplay, Keyboard, A11y],
     slidesPerView: 1,
     spaceBetween: 24,
-    speed: 600,
+    speed: 750,
     loop: true,
     autoplay: {
       delay: 4000,
