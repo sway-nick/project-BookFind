@@ -16,19 +16,17 @@
 
   background: radial-gradient(
     120% 120% at 30% 25%,
-    rgba(255, 255, 255, 0.28) 0%,
-    rgba(255, 255, 255, 0.08) 70%
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.00) 70%
   );
-  backdrop-filter: blur(8px) saturate(160%);
-  -webkit-backdrop-filter: blur(8px) saturate(160%);
   backdrop-filter: url(#liquidGlassFilter) saturate(125%) brightness(1.04);
   -webkit-backdrop-filter: url(#liquidGlassFilter) saturate(125%) brightness(1.04);
-  border: 1px solid rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.22);
 
   box-shadow:
-    inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.6),
-    inset 0 -1px 2px 0 rgba(0, 0, 0, 0.15),
-    0 8px 24px 0 rgba(11, 5, 0, 0.22),
+    inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1px 2px 0 rgba(0, 0, 0, 0.25),
+    0 8px 24px 0 rgba(11, 5, 0, 0.35),
     0 0 12px 0 rgba(225, 93, 5, 0.18);
 
   color: var(--color-text);
@@ -61,11 +59,11 @@
   border-radius: 50%;
   background: radial-gradient(
     circle at 35% 20%,
-    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.18) 0%,
     rgba(255, 255, 255, 0) 55%
   );
   pointer-events: none;
-  opacity: 0.7;
+  opacity: 0.6;
   transition: opacity 0.25s ease;
 }
 
@@ -80,11 +78,11 @@
   border-radius: 50%;
   background: radial-gradient(
     ellipse at bottom,
-    rgba(225, 93, 5, 0.28) 0%,
+    rgba(225, 93, 5, 0.22) 0%,
     rgba(225, 93, 5, 0) 70%
   );
   pointer-events: none;
-  opacity: 0.6;
+  opacity: 0.5;
   transition: opacity 0.25s ease;
 }
 
@@ -101,21 +99,21 @@
 .scroll-up-btn:hover,
 .scroll-up-btn:focus-visible {
   transform: translateY(0) scale(1.08);
-  border-color: rgba(255, 255, 255, 0.7);
+  border-color: rgba(255, 255, 255, 0.45);
   color: var(--color-accent);
   box-shadow:
-    inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.7),
-    inset 0 -1px 2px 0 rgba(0, 0, 0, 0.2),
-    0 10px 30px 0 rgba(11, 5, 0, 0.3),
+    inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -1px 2px 0 rgba(0, 0, 0, 0.3),
+    0 10px 30px 0 rgba(11, 5, 0, 0.45),
     0 0 20px 0 rgba(225, 93, 5, 0.35);
 }
 
 .scroll-up-btn:hover::before {
-  opacity: 0.95;
+  opacity: 0.85;
 }
 
 .scroll-up-btn:hover::after {
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
 .scroll-up-btn:focus-visible {
@@ -128,13 +126,13 @@
   transform: translateY(0) scale(0.95);
   box-shadow:
     inset 0 1px 2px 0 rgba(0, 0, 0, 0.35),
-    0 4px 14px 0 rgba(11, 5, 0, 0.2),
-    0 0 10px 0 rgba(225, 93, 5, 0.2);
+    0 4px 14px 0 rgba(11, 5, 0, 0.25),
+    0 0 10px 0 rgba(225, 93, 5, 0.18);
 }
 
 .scroll-top-icon {
   display: block;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.2s ease;
 }
 
