@@ -2,7 +2,7 @@ const scrollUpBtn = document.querySelector('.scroll-up-btn');
 
 if (scrollUpBtn) {
   // Enforce liquid glass magnification lens filter directly on element
-  const lensFilter = 'url(#liquidGlassFilter) saturate(125%) brightness(1.04)';
+  const lensFilter = 'url(#liquidGlassFilter) saturate(135%) brightness(1.05)';
   scrollUpBtn.style.setProperty('backdrop-filter', lensFilter);
   scrollUpBtn.style.setProperty('-webkit-backdrop-filter', lensFilter);
 
