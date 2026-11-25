@@ -10,6 +10,7 @@ import {
 } from './books-render.js';
 import { BOOKS_PER_LOAD, BOOKS_PER_PAGE, TABLET_QUERY } from './constants.js';
 import iziToast from 'izitoast';
+import { t } from './i18n.js';
 
 const ALL_CATEGORIES = 'All categories';
 let currentBooks = [];
@@ -80,9 +81,10 @@ async function categoryHandler(e) {
   if (!targetButton) return;
   closeCategories();
   setActiveCategory(targetButton);
+  const isAll = targetButton.hasAttribute('data-all-categories');
   const category = e.target.textContent.trim();
   try {
-    if (category === ALL_CATEGORIES) {
+    if (isAll) {
       const data = await getAllBooks();
       showBooks(data);
     } else {
@@ -91,7 +93,7 @@ async function categoryHandler(e) {
     }
   } catch {
     iziToast.error({
-      message: 'Failed to load books. Please try again later.',
+      message: t('toast_error_load'),
       position: 'topRight',
     });
   }
@@ -111,10 +113,20 @@ async function initBooks() {
     showBooks(books);
   } catch {
     iziToast.error({
-      message: 'Failed to load books. Please try again later.',
+      message: t('toast_error_load'),
       position: 'topRight',
     });
   }
 }
+
+window.addEventListener('booksy:lang-changed', () => {
+  const allCatBtn = document.querySelector('[data-all-categories="true"]');
+  if (allCatBtn) {
+    allCatBtn.textContent = t('books_all_categories');
+  }
+  document.querySelectorAll('.books-item-btn[data-id]').forEach(btn => {
+    btn.textContent = t('books_learn_more');
+  });
+});
 
 initBooks();

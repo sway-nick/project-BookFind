@@ -1,3 +1,5 @@
+import { t } from './i18n.js';
+
 export const refs = {
   categoriesList: document.querySelector('.categories-list'),
   booksList: document.querySelector('.books-list'),
@@ -8,10 +10,11 @@ export const refs = {
   categoriesToggle: document.querySelector('.categories-toggle'),
 };
 
-function categoryTemplate(name) {
+function categoryTemplate(name, index) {
+  const isAll = index === 0;
   return `
   <li class="categories-item">
-    <button class="categories-btn" type="button">${name}</button>
+    <button class="categories-btn" type="button" ${isAll ? 'data-all-categories="true"' : ''}>${isAll ? t('books_all_categories') : name}</button>
   </li>`;
 }
 
@@ -55,7 +58,7 @@ function bookTemplate(book) {
   return `
   <li class="books-item" data-id="${book._id}">
     ${bookCardContent(book)}
-    <button class="books-item-btn" type="button" data-id="${book._id}">Learn More</button>
+    <button class="books-item-btn" type="button" data-id="${book._id}" data-i18n="books_learn_more">${t('books_learn_more')}</button>
  </li>`;
 }
 
@@ -63,8 +66,8 @@ export function shoppingItemTemplate(book) {
   return `
   <li class="books-item">
     ${bookCardContent(book)}
-    <p class="shopping-item-qty">Quantity: ${book.quantity}</p>
-    <button class="books-item-btn" type="button" data-remove-id="${book._id}">Remove</button>
+    <p class="shopping-item-qty">${t('shopping_quantity')}${book.quantity}</p>
+    <button class="books-item-btn" type="button" data-remove-id="${book._id}" data-i18n="shopping_remove">${t('shopping_remove')}</button>
   </li>`;
 }
 

@@ -1,4 +1,5 @@
 import iziToast from 'izitoast';
+import { t } from './i18n.js';
 
 const footerForm = document.querySelector('.footer-form');
 
@@ -15,7 +16,7 @@ function onFooterFormSubmit(event) {
   }
 
   iziToast.success({
-    message: 'Thank you for subscribing!',
+    message: t('toast_subscribe_success'),
     position: 'topRight',
   });
 

@@ -1,5 +1,6 @@
 import { closeContactModal } from './modals.js';
 import iziToast from 'izitoast';
+import { t } from './i18n.js';
 
 const contactForm = document.querySelector('.contact-form');
 
@@ -28,7 +29,7 @@ function handleSubmit(event) {
   }
 
   iziToast.success({
-    message: 'Thank you! You have been registered.',
+    message: t('toast_register_success'),
     position: 'topRight',
   });
 

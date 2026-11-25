@@ -1,6 +1,7 @@
 import Accordion from 'accordion-js';
 import 'accordion-js/accordion.min.css';
 import iziToast from 'izitoast';
+import { t } from './i18n.js';
 import { getBookById } from './books-api.js';
 import { addToShoppingList } from './shopping-list-storage.js';
 
@@ -101,7 +102,7 @@ async function openBookModal(bookId, triggerImg = null) {
     bookAccordion.open(0);
   } catch {
     iziToast.error({
-      message: 'Failed to load book details. Please try again later.',
+      message: t('toast_error_load'),
       position: 'topRight',
     });
   } finally {
@@ -149,7 +150,7 @@ refs.addToCartBtn.addEventListener('click', () => {
   const title = currentBook?.title || 'Book';
   addToShoppingList(currentBook, quantity);
   iziToast.info({
-    message: `Added to cart: ${quantity} × "${title}"`,
+    message: t('toast_added_to_cart', { qty: quantity, title }),
     position: 'topCenter',
   });
 });
@@ -157,7 +158,7 @@ refs.addToCartBtn.addEventListener('click', () => {
 refs.form.addEventListener('submit', event => {
   event.preventDefault();
   iziToast.success({
-    message: 'Дякуємо за покупку',
+    message: t('toast_thank_you'),
     position: 'topRight',
   });
   closeBookModal();

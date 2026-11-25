@@ -13,23 +13,28 @@
 
       <ul class="header-nav-list">
         <li class="header-nav-item">
-          <a class="header-nav-link" href="#home">Home</a>
+          <a class="header-nav-link" href="#home" data-i18n="nav_home">Home</a>
         </li>
         <li class="header-nav-item">
-          <a class="header-nav-link" href="#books">Books</a>
+          <a class="header-nav-link" href="#books" data-i18n="nav_books">Books</a>
         </li>
         <li class="header-nav-item">
-          <a class="header-nav-link" href="#feedbacks">Feedbacks</a>
+          <a class="header-nav-link" href="#feedbacks" data-i18n="nav_feedbacks">Feedbacks</a>
         </li>
         <li class="header-nav-item">
-          <a class="header-nav-link" href="#events">Events</a>
+          <a class="header-nav-link" href="#events" data-i18n="nav_events">Events</a>
         </li>
         <li class="header-nav-item">
-          <a class="header-nav-link" href="#location">Location</a>
+          <a class="header-nav-link" href="#location" data-i18n="nav_location">Location</a>
         </li>
       </ul>
     </nav>
-    <button class="shopping-open-btn" type="button" data-shopping-open>Cart</button>
+    <div class="lang-switcher" role="group" aria-label="Language switcher">
+      <button class="lang-btn is-active" type="button" data-lang="en">EN</button>
+      <button class="lang-btn" type="button" data-lang="uk">UA</button>
+      <button class="lang-btn" type="button" data-lang="ru">RU</button>
+    </div>
+    <button class="shopping-open-btn" type="button" data-shopping-open data-i18n="nav_cart">Cart</button>
     <button
       class="burger-btn"
       type="button"

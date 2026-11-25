@@ -1,4 +1,5 @@
 import iziToast from 'izitoast';
+import { t } from './i18n.js';
 import {
   getShoppingList,
   removeFromShoppingList,
@@ -38,7 +39,7 @@ function renderShoppingList() {
 
   refs.list.innerHTML = list.length
     ? pageItems.map(shoppingItemTemplate).join('')
-    : '<li class="shopping-empty">Your shopping list is empty.</li>';
+    : `<li class="shopping-empty" data-i18n="shopping_empty">${t('shopping_empty')}</li>`;
   refs.pagination.innerHTML = totalPages > 1 ? paginationTemplate(totalPages) : '';
   refs.buyBtn.classList.toggle('is-hidden', !list.length);
 }
@@ -64,7 +65,7 @@ function closeShoppingModal() {
 function buyAll() {
   clearShoppingList();
   renderShoppingList();
-  iziToast.success({ message: 'Дякуємо за покупку', position: 'topRight' });
+  iziToast.success({ message: t('toast_thank_you'), position: 'topRight' });
 }
 
 refs.openBtn.addEventListener('click', openShoppingModal);

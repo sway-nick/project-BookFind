@@ -1,17 +1,17 @@
 <section class="books" id="books">
   <div class="container books-container">
-    <h2 class="books-title visually-hidden">Trending books</h2>
+    <h2 class="books-title visually-hidden" data-i18n="books_title">Trending books</h2>
     <div class="books-header">
       <div class="categories-list-wrapper">
-        <h3 class="books-subtitle">Books</h3>
+        <h3 class="books-subtitle" data-i18n="books_title">Books</h3>
         <p class="books-count" aria-live="polite">
-          Showing <span class="books-count-current">0</span> of <span
+          <span data-i18n="books_showing">Showing</span> <span class="books-count-current">0</span> <span data-i18n="books_of">of</span> <span
           class="books-count-total">0</span>
         </p>
       </div>
       <div class="categories">
         <button class="categories-toggle" type="button" aria-expanded="false">
-          Categories
+          <span class="categories-toggle-text" data-i18n="books_categories">Categories</span>
           <svg class="categories-toggle-icon" width="24" height="24" aria-hidden="true">
             <use href="./images/icons.svg#chevron-down"></use>
           </svg>
@@ -21,7 +21,7 @@
     </div>
     <div class="books-list-wrapper">
       <ul class="books-list"></ul>
-      <button class="books-more-btn is-hidden" type="button">Show More</button>
+      <button class="books-more-btn is-hidden" type="button" data-i18n="books_show_more">Show More</button>
     </div>
   </div>
 </section>
