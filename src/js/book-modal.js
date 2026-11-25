@@ -155,12 +155,16 @@ refs.form.addEventListener('submit', event => {
 });
 
 refs.booksList.addEventListener('click', event => {
-  const learnMoreBtn = event.target.closest('.books-item-btn[data-id]');
-  if (!learnMoreBtn) return;
+  const trigger = event.target.closest('.books-item-btn[data-id], .books-item-img');
+  if (!trigger) return;
 
-  const { id } = learnMoreBtn.dataset;
-  if (id) {
-    openBookModal(id);
+  const card = trigger.closest('.books-item');
+  const bookId =
+    trigger.dataset.id ||
+    card?.querySelector('.books-item-btn[data-id]')?.dataset.id;
+
+  if (bookId) {
+    openBookModal(bookId);
   }
 });
 

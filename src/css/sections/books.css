@@ -146,6 +146,17 @@
   object-fit: cover;
   border-radius: 8px;
   background-color: var(--color-input-bg);
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.books-item-img:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(11, 5, 0, 0.15);
+}
+
+.books-item-img:active {
+  transform: translateY(-1px);
 }
 
 .books-item-info {

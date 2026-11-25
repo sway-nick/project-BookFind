@@ -30,7 +30,7 @@ export function setActiveCategory(button) {
   button.setAttribute('aria-current', 'true');
 }
 
-function bookCardContent({ title, author, price, book_image }) {
+function bookCardContent({ title, author, price, book_image, _id }) {
   return `
       <img
       class="books-item-img"
@@ -39,6 +39,7 @@ function bookCardContent({ title, author, price, book_image }) {
       width="343"
       height="488"
       loading="lazy"
+      ${_id ? `data-id="${_id}"` : ''}
     />
     <div class="books-item-info">
       <div class="books-item-text">
@@ -51,7 +52,7 @@ function bookCardContent({ title, author, price, book_image }) {
 
 function bookTemplate(book) {
   return `
-  <li class="books-item">
+  <li class="books-item" data-id="${book._id}">
     ${bookCardContent(book)}
     <button class="books-item-btn" type="button" data-id="${book._id}">Learn More</button>
  </li>`;
