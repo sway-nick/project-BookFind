@@ -29,6 +29,19 @@ function paginationTemplate(totalPages) {
   return markup;
 }
 
+export function updateCartBadge() {
+  const badge = document.querySelector('[data-cart-count]');
+  if (!badge) return;
+  const list = getShoppingList();
+  const totalCount = list.reduce((sum, item) => sum + (Number(item.quantity) || 1), 0);
+  if (totalCount > 0) {
+    badge.textContent = totalCount > 99 ? '99+' : String(totalCount);
+    badge.classList.remove('is-hidden');
+  } else {
+    badge.classList.add('is-hidden');
+  }
+}
+
 function renderShoppingList() {
   const list = getShoppingList();
   const totalPages = Math.ceil(list.length / STORAGE.SHOPPING_PER_PAGE);
@@ -42,6 +55,7 @@ function renderShoppingList() {
     : `<li class="shopping-empty" data-i18n="shopping_empty">${t('shopping_empty')}</li>`;
   refs.pagination.innerHTML = totalPages > 1 ? paginationTemplate(totalPages) : '';
   refs.buyBtn.classList.toggle('is-hidden', !list.length);
+  updateCartBadge();
 }
 
 function onEscPress(event) {
@@ -89,3 +103,5 @@ refs.list.addEventListener('click', event => {
   removeFromShoppingList(button.dataset.removeId);
   renderShoppingList();
 });
+
+updateCartBadge();

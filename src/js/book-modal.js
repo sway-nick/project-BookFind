@@ -4,6 +4,7 @@ import iziToast from 'izitoast';
 import { t, getCurrentLanguage } from './i18n.js';
 import { getBookById } from './books-api.js';
 import { addToShoppingList } from './shopping-list-storage.js';
+import { updateCartBadge } from './shopping-modal.js';
 import { translateToUkrainian, getCachedTranslation } from './translator.js';
 
 const MIN_QUANTITY = 1;
@@ -196,6 +197,7 @@ refs.addToCartBtn.addEventListener('click', () => {
   const quantity = getSafeQuantity();
   const title = currentBook?.title || 'Book';
   addToShoppingList(currentBook, quantity);
+  updateCartBadge();
   iziToast.info({
     message: t('toast_added_to_cart', { qty: quantity, title }),
     position: 'topCenter',
