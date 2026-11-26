@@ -34,6 +34,7 @@ export const translations = {
     book_modal_add_to_cart: 'Add To Cart',
     book_modal_buy_now: 'Buy Now',
     book_modal_details: 'Details',
+    book_modal_no_desc: 'No description available for this book.',
     book_modal_shipping: 'Shipping',
     book_modal_shipping_text:
       'We ship across the United States within 2–5 business days. All orders are processed through USPS or a reliable courier service. Enjoy free standard shipping on orders over $50.',
@@ -159,6 +160,7 @@ export const translations = {
     book_modal_add_to_cart: 'Додати в кошик',
     book_modal_buy_now: 'Купити зараз',
     book_modal_details: 'Опис',
+    book_modal_no_desc: 'Опис для цієї книги відсутній.',
     book_modal_shipping: 'Доставка',
     book_modal_shipping_text:
       'Ми доставляємо по всій країні протягом 2–5 робочих днів. Усі замовлення оформлюються через надійні кур’єрські служби. Безкоштовна стандартна доставка для замовлень від $50.',
@@ -249,3 +251,34 @@ export const translations = {
     contact_email_error: 'Будь ласка, введіть коректний email',
   },
 };
+
+export const CATEGORY_TRANSLATIONS = {
+  "Children’s & Young Adult Series": "Серії для дітей та підлітків",
+  "Children's & Young Adult Series": "Серії для дітей та підлітків",
+  "Audio Children's": "Аудіокниги для дітей",
+  "Audio Fiction": "Аудіо художня література",
+  "Audio Nonfiction": "Аудіо нон-фікшн",
+  "Advice, How-To & Miscellaneous": "Поради та саморозвиток",
+  "Business": "Бізнес та фінанси",
+  "Hardcover Nonfiction": "Нон-фікшн (тверда обкладинка)",
+  "Combined Print & E-Book Nonfiction": "Друкований та електронний нон-фікшн",
+  "Young Adult Hardcover": "Підліткова література (тверда обкладинка)",
+  "Hardcover Fiction": "Художня література (тверда обкладинка)",
+  "Children's Middle Grade Hardcover": "Дитячі книги для середнього віку",
+  "Children’s Middle Grade Hardcover": "Дитячі книги для середнього віку",
+  "Young Adult Paperback": "Підліткова література (м'яка обкладинка)",
+  "Graphic Books and Manga": "Комікси та манґа",
+  "Children’s Picture Books": "Дитячі книги з малюнками",
+  "Paperback Trade Fiction": "Художня література (м'яка обкладинка)",
+  "Combined Print & E-Book Fiction": "Друкована та електронна художня література",
+  "Paperback Nonfiction": "Нон-фікшн (м'яка обкладинка)",
+  "Middle Grade Paperback": "Дитячі книги (м'яка обкладинка)",
+  "Audio Advice, How-To & Misc": "Аудіо поради та саморозвиток",
+};
+
+export function getCategoryTranslation(name, lang = 'en') {
+  if (lang === 'uk' && CATEGORY_TRANSLATIONS[name]) {
+    return CATEGORY_TRANSLATIONS[name];
+  }
+  return name;
+}

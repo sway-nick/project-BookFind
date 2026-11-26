@@ -10,7 +10,8 @@ import {
 } from './books-render.js';
 import { BOOKS_PER_LOAD, BOOKS_PER_PAGE, TABLET_QUERY } from './constants.js';
 import iziToast from 'izitoast';
-import { t } from './i18n.js';
+import { t, getCurrentLanguage } from './i18n.js';
+import { getCategoryTranslation } from './translations.js';
 
 const ALL_CATEGORIES = 'All categories';
 let currentBooks = [];
@@ -82,7 +83,7 @@ async function categoryHandler(e) {
   closeCategories();
   setActiveCategory(targetButton);
   const isAll = targetButton.hasAttribute('data-all-categories');
-  const category = e.target.textContent.trim();
+  const category = targetButton.dataset.categoryName || e.target.textContent.trim();
   try {
     if (isAll) {
       const data = await getAllBooks();
@@ -124,6 +125,13 @@ window.addEventListener('booksy:lang-changed', () => {
   if (allCatBtn) {
     allCatBtn.textContent = t('books_all_categories');
   }
+  const lang = getCurrentLanguage();
+  document.querySelectorAll('.categories-btn[data-category-name]').forEach(btn => {
+    if (!btn.hasAttribute('data-all-categories')) {
+      const orig = btn.dataset.categoryName;
+      btn.textContent = getCategoryTranslation(orig, lang);
+    }
+  });
   document.querySelectorAll('.books-item-btn[data-id]').forEach(btn => {
     btn.textContent = t('books_learn_more');
   });

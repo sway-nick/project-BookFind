@@ -1,9 +1,10 @@
 import Accordion from 'accordion-js';
 import 'accordion-js/accordion.min.css';
 import iziToast from 'izitoast';
-import { t } from './i18n.js';
+import { t, getCurrentLanguage } from './i18n.js';
 import { getBookById } from './books-api.js';
 import { addToShoppingList } from './shopping-list-storage.js';
+import { translateToUkrainian, getCachedTranslation } from './translator.js';
 
 const MIN_QUANTITY = 1;
 const MAX_QUANTITY = 99;
@@ -31,11 +32,43 @@ const refs = {
 };
 
 let currentBook = null;
+let currentRawDescription = '';
 
 const bookAccordion = new Accordion(refs.accordionContainer, {
   duration: 250,
   showMultiple: false,
 });
+
+async function updateModalDescription() {
+  if (!refs.detailsText) return;
+  const lang = getCurrentLanguage();
+  const raw = currentRawDescription.trim();
+
+  if (!raw) {
+    refs.detailsText.textContent = t('book_modal_no_desc');
+    return;
+  }
+
+  if (lang === 'uk') {
+    const cached = getCachedTranslation('uk', raw);
+    if (cached) {
+      refs.detailsText.textContent = cached;
+      return;
+    }
+
+    refs.detailsText.textContent = raw;
+    const translated = await translateToUkrainian(raw);
+    if (
+      refs.detailsText &&
+      getCurrentLanguage() === 'uk' &&
+      currentRawDescription.trim() === raw
+    ) {
+      refs.detailsText.textContent = translated;
+    }
+  } else {
+    refs.detailsText.textContent = raw;
+  }
+}
 
 function formatBookTitle(title) {
   const trimmed = title?.trim();
@@ -70,16 +103,24 @@ function setQuantity(value) {
 function populateBookModal(book) {
   const formattedTitle = formatBookTitle(book.title);
   currentBook = { ...book, title: formattedTitle };
+  currentRawDescription = book.description?.trim() || '';
 
   refs.img.src = book.book_image || PLACEHOLDER_IMG;
   refs.img.alt = formattedTitle;
   refs.title.textContent = formattedTitle;
   refs.author.textContent = book.author || 'Unknown author';
   refs.price.textContent = formatPrice(book.price);
-  refs.detailsText.textContent = book.description?.trim() || DEFAULT_DESCRIPTION;
+  
+  updateModalDescription();
 
   setQuantity(MIN_QUANTITY);
 }
+
+window.addEventListener('booksy:lang-changed', () => {
+  if (currentBook) {
+    updateModalDescription();
+  }
+});
 
 function handleBookModalEscape(event) {
   if (event.key === 'Escape') {

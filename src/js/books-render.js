@@ -1,4 +1,5 @@
-import { t } from './i18n.js';
+import { t, getCurrentLanguage } from './i18n.js';
+import { getCategoryTranslation } from './translations.js';
 
 export const refs = {
   categoriesList: document.querySelector('.categories-list'),
@@ -12,9 +13,11 @@ export const refs = {
 
 function categoryTemplate(name, index) {
   const isAll = index === 0;
+  const lang = getCurrentLanguage();
+  const label = isAll ? t('books_all_categories') : getCategoryTranslation(name, lang);
   return `
   <li class="categories-item">
-    <button class="categories-btn" type="button" ${isAll ? 'data-all-categories="true"' : ''}>${isAll ? t('books_all_categories') : name}</button>
+    <button class="categories-btn" type="button" data-category-name="${name}" ${isAll ? 'data-all-categories="true"' : ''}>${label}</button>
   </li>`;
 }
 
