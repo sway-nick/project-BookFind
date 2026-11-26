@@ -90,6 +90,7 @@
   .header-nav {
     flex: 1;
     justify-content: space-between;
+    gap: 32px;
     margin-right: 28px;
   }
 
