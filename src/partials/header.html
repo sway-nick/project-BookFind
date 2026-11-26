@@ -29,23 +29,24 @@
         </li>
       </ul>
     </nav>
-    <div class="lang-switcher" role="group" aria-label="Language switcher">
-      <button class="lang-btn is-active" type="button" data-lang="en">EN</button>
-      <button class="lang-btn" type="button" data-lang="uk">UA</button>
-      <button class="lang-btn" type="button" data-lang="ru">RU</button>
+    <div class="header-actions">
+      <div class="lang-switcher" role="group" aria-label="Language switcher">
+        <button class="lang-btn is-active" type="button" data-lang="en">EN</button>
+        <button class="lang-btn" type="button" data-lang="uk">UA</button>
+      </div>
+      <button class="shopping-open-btn" type="button" data-shopping-open data-i18n="nav_cart">Cart</button>
+      <button
+        class="burger-btn"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        data-menu-open
+      >
+        <svg class="burger-icon" width="24" height="24" aria-hidden="true">
+          <use href="./images/icons.svg#menu-alt-right"></use>
+        </svg>
+      </button>
     </div>
-    <button class="shopping-open-btn" type="button" data-shopping-open data-i18n="nav_cart">Cart</button>
-    <button
-      class="burger-btn"
-      type="button"
-      aria-label="Open menu"
-      aria-expanded="false"
-      aria-controls="mobile-menu"
-      data-menu-open
-    >
-      <svg class="burger-icon" width="24" height="24" aria-hidden="true">
-        <use href="./images/icons.svg#menu-alt-right"></use>
-      </svg>
-    </button>
   </div>
 </header>

@@ -46,6 +46,14 @@
   display: none;
 }
 
+/* Action buttons group (Language switcher, Cart, Burger) */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
 /* Кнопка відкриття бургер-меню */
 .burger-btn {
   display: flex;
@@ -80,8 +88,14 @@
 
   /* Навігація розтягується і розміщує логотип зліва, а меню справа */
   .header-nav {
-    width: 100%;
+    flex: 1;
     justify-content: space-between;
+    margin-right: 28px;
+  }
+
+  .header-actions {
+    gap: 16px;
+    margin-left: 0;
   }
 
   .header-nav-list {

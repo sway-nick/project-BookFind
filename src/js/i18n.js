@@ -1,6 +1,6 @@
 import { translations } from './translations.js';
 
-export const SUPPORTED_LANGS = ['en', 'uk', 'ru'];
+export const SUPPORTED_LANGS = ['en', 'uk'];
 export const DEFAULT_LANG = 'en';
 
 let currentLang = DEFAULT_LANG;
@@ -15,7 +15,6 @@ export function detectLanguage() {
   for (const lang of navLangs) {
     const code = lang.toLowerCase().slice(0, 2);
     if (code === 'uk') return 'uk';
-    if (code === 'ru') return 'ru';
     if (code === 'en') return 'en';
   }
 
