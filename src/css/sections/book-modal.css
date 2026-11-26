@@ -273,13 +273,22 @@
   color: var(--color-text);
 }
 
-@media only screen and (min-width: 375px) {
+/* On mobile, avoid duplicating book title beneath cover image; show only Author */
+@media only screen and (max-width: 767px) {
   .book-modal-title {
-    font-size: 40px;
+    display: none;
+  }
+
+  .book-modal-author {
+    font-size: 16px;
+    font-weight: 500;
   }
 }
 
 @media only screen and (min-width: 768px) {
+  .book-modal-title {
+    font-size: 40px;
+  }
   .book-modal-backdrop {
     padding: 64px 32px;
   }

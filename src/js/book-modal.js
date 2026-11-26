@@ -100,15 +100,20 @@ function setQuantity(value) {
   refs.qtyInput.value = String(clamped);
 }
 
+function updateAuthorText(author) {
+  const authorName = author?.trim() || t('book_modal_unknown_author');
+  refs.author.textContent = `${t('book_modal_author_prefix')}${authorName}`;
+}
+
 function populateBookModal(book) {
   const formattedTitle = formatBookTitle(book.title);
-  currentBook = { ...book, title: formattedTitle };
+  currentBook = { ...book, title: formattedTitle, rawAuthor: book.author };
   currentRawDescription = book.description?.trim() || '';
 
   refs.img.src = book.book_image || PLACEHOLDER_IMG;
   refs.img.alt = formattedTitle;
   refs.title.textContent = formattedTitle;
-  refs.author.textContent = book.author || 'Unknown author';
+  updateAuthorText(book.author);
   refs.price.textContent = formatPrice(book.price);
   
   updateModalDescription();
@@ -118,6 +123,7 @@ function populateBookModal(book) {
 
 window.addEventListener('booksy:lang-changed', () => {
   if (currentBook) {
+    updateAuthorText(currentBook.rawAuthor);
     updateModalDescription();
   }
 });

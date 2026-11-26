@@ -31,6 +31,8 @@ export const translations = {
     books_show_more: 'Show More',
 
     // Book Modal
+    book_modal_author_prefix: 'Author: ',
+    book_modal_unknown_author: 'Unknown author',
     book_modal_add_to_cart: 'Add To Cart',
     book_modal_buy_now: 'Buy Now',
     book_modal_details: 'Details',
@@ -157,6 +159,8 @@ export const translations = {
     books_show_more: 'Показати ще',
 
     // Book Modal
+    book_modal_author_prefix: 'Автор: ',
+    book_modal_unknown_author: 'Невідомий автор',
     book_modal_add_to_cart: 'Додати в кошик',
     book_modal_buy_now: 'Купити зараз',
     book_modal_details: 'Опис',
